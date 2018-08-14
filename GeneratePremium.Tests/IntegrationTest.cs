@@ -41,5 +41,15 @@ namespace GeneratePremium.Tests
 
             Assert.That(response.Result, Is.EqualTo("Hello, World!"));
         }
+
+        //TODO 2 Adjust test.
+        [Test]
+        public void Can_call_Premium_Service()
+        {
+            var client = CreateClient();
+            var response = (GenPremiumResponse)client.Post(new GenPremium { Name = "Joe Bloggs" });
+
+            Assert.That(response.Result, Is.EqualTo("TODO Generate a premium for Joe Bloggs"));
+        }
     }
 }

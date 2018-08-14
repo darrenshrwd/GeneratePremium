@@ -8,6 +8,7 @@
 dist/
 coverage/
 /tests/e2e/videos/
+/tests/e2e/screenshots/
 
 # local env files
 .env.local
