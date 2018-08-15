@@ -8,7 +8,7 @@ namespace GeneratePremium.ServiceInterface
 
     public class PremiumService : Service
     {
-        public object Post(GenPremium request)
+        public object Post(PremiumInput request)
         {
             if (string.IsNullOrEmpty(request.Name))
                 throw new ArgumentException("We require your name");
@@ -22,7 +22,7 @@ namespace GeneratePremium.ServiceInterface
                 throw new ArgumentException("Can only receive a Premium if between the age of 18 and 65");
 
             var premium = PremiumCalculations.CalculatePremium(age, request.Gender);
-            return new GenPremiumResponse { Result = $"Your premium is ${premium}" };
+            return new PremiumInputResponse { Result = $"Your premium is ${premium}" };
         }
     }
 }

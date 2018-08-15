@@ -139,7 +139,7 @@ namespace GeneratePremium.Tests
             var premium = PremiumCalculations.CalculatePremium(age, input.Gender);
 
             //Act
-            var response = (GenPremiumResponse)service.Post(input);
+            var response = (PremiumInputResponse)service.Post(input);
 
             //Assert
             Assert.That(response.Result, Is.EqualTo($"Your premium is ${premium}"));

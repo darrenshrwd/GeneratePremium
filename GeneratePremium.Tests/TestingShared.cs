@@ -5,9 +5,9 @@
 
     public class TestingShared
     {
-        public static GenPremium GetPremiumInput(int targetAgeToday, string name, string gender)
+        public static PremiumInput GetPremiumInput(int targetAgeToday, string name, string gender)
         {
-            var genPremium = new GenPremium
+            var genPremium = new PremiumInput
             {
                 Name = name,
                 Gender = gender
