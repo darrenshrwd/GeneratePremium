@@ -44,24 +44,21 @@ namespace GeneratePremium.Tests
             Assert.That(response.Result, Is.EqualTo("Hello, World!"));
         }
 
-        //TODO 2 Adjust test.
         [Test]
         public void Can_call_Premium_Service()
         {
             var client = CreateClient();
-            var input = new GenPremium
-            {
-                Name = "Joe Bloggs",
-                DateOfBirth = new DateTime(2000, 01, 20),
-                Gender = "Male"
-            };
+
+            const int targetAgeToday = 18;
+            var input = TestingShared.GetPremiumInput(targetAgeToday, "A Rose", "male");
 
             var age = input.DateOfBirth.CalculateAge();
-            Assert.AreEqual(18,age);
+            Assert.AreEqual(targetAgeToday, age);
 
-            var response = (GenPremiumResponse)client.Post(input);
+            var premium = PremiumCalculations.CalculatePremium(age, input.Gender);
 
-            Assert.That(response.Result, Is.EqualTo("TODO Generate a premium for Joe Bloggs"));
+            var response = client.Post(input);
+            Assert.That(response.Result, Is.EqualTo($"Your premium is ${premium}"));;
         }
     }
 }

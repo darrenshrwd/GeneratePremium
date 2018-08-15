@@ -6,10 +6,11 @@ namespace GeneratePremium.ServiceModel.Extensions
     {
         public static int CalculateAge(this DateTime dateOfBirth)
         {
-            var age = DateTime.Now.Year - dateOfBirth.Year;
-            if (DateTime.Now.DayOfYear < dateOfBirth.DayOfYear)
-                age = age - 1;
+            var today = DateTime.Today;
+            var age = today.Year - dateOfBirth.Year;
 
+            // Go back to the year the person was born in case of a leap year
+            if (dateOfBirth > today.AddYears(-age)) age--;
             return age;
         }
     }

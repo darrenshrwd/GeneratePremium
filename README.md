@@ -1,5 +1,17 @@
-# vue-spa
+## Areas of improvement and refinement if you had a full 2 days to build this application
 
+1. I would split the UnitTest.cs file up for the relevant classes being tested.
+2. So far I have only written a single test for exception handling etc, otherwise I have only tested 'positive' outcomes.
+3. I would add a couple of tests around the age calc for leap years.
+4. I have not adjusted any of the front end tests from the template, I would do that.
+
+5. Obviously there are a bunch of magic numbers that would come from some kind of database in real life.
+
+
+
+-----------------------------------------------------------------
+I like ServiceStack but had only used the full framework version, I wanted to try .NET CORE and also give Vue a go. So I started with their .NET CORE Vue template...
+-----------------------------------------------------------------
 .NET Core 2.1 Vue Webpack App Template
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/vue-spa.png)](http://vue-spa.web-templates.io/)

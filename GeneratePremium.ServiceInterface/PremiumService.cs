@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using ServiceStack;
-using ServiceStack.Templates;
-using ServiceStack.DataAnnotations;
 using GeneratePremium.ServiceModel;
 using GeneratePremium.ServiceModel.Extensions;
 
@@ -14,24 +10,19 @@ namespace GeneratePremium.ServiceInterface
     {
         public object Post(GenPremium request)
         {
-            /* TODO 3
-            Input fields:
-            Name
-            Date of Birth
-            Gender
+            if (string.IsNullOrEmpty(request.Name))
+                throw new ArgumentException("We require your name");
 
-            Based on the input, use the following to calculate a result:
-            Premium = Age * GenderFactor * 100
-            GenderFactor is based on the Gender the user supplied. 1.2 for a Male and 1.1 for a Female
-            The person can only receive a Premium if they are between the age of 18 and 65
+            if (string.IsNullOrEmpty(request.Gender))
+                throw new ArgumentException("We require your gender");
 
-             */
+            var age = request.DateOfBirth.CalculateAge();
 
-            var age1 = request.DateOfBirth.CalculateAge();
+            if (age < 18 || age > 65)
+                throw new ArgumentException("Can only receive a Premium if between the age of 18 and 65");
 
-            return new GenPremiumResponse { Result = $"TODO Generate a premium for {request.Name}" };
+            var premium = PremiumCalculations.CalculatePremium(age, request.Gender);
+            return new GenPremiumResponse { Result = $"Your premium is ${premium}" };
         }
-
-
     }
 }
