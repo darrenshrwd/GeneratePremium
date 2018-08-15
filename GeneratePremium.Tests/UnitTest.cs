@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using ServiceStack;
 using ServiceStack.Testing;
 using GeneratePremium.ServiceInterface;
@@ -55,7 +56,14 @@ namespace GeneratePremium.Tests
         {
             var service = appHost.Container.Resolve<PremiumService>();
 
-            var response = (GenPremiumResponse)service.Post(new GenPremium { Name = "Joe Bloggs" });
+            var input = new GenPremium
+            {
+                Name = "Joe Bloggs",
+                DateOfBirth = new DateTime(2000, 01, 20),
+                Gender = "Male"
+            };
+
+            var response = (GenPremiumResponse)service.Post(input);
 
             Assert.That(response.Result, Is.EqualTo("TODO Generate a premium for Joe Bloggs"));
         }

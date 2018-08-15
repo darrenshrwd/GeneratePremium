@@ -5,6 +5,7 @@ using ServiceStack;
 using ServiceStack.Templates;
 using ServiceStack.DataAnnotations;
 using GeneratePremium.ServiceModel;
+using GeneratePremium.ServiceModel.Extensions;
 
 namespace GeneratePremium.ServiceInterface
 {
@@ -14,7 +15,6 @@ namespace GeneratePremium.ServiceInterface
         public object Post(GenPremium request)
         {
             /* TODO 3
-
             Input fields:
             Name
             Date of Birth
@@ -27,7 +27,11 @@ namespace GeneratePremium.ServiceInterface
 
              */
 
+            var age1 = request.DateOfBirth.CalculateAge();
+
             return new GenPremiumResponse { Result = $"TODO Generate a premium for {request.Name}" };
         }
+
+
     }
 }
